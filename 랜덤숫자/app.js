@@ -13,11 +13,9 @@ function onFormSubmit(event) {
   const savedValue = localStorage.getItem(VALUE_KEY);
   const randomValue = Math.round(Math.random() * savedValue);
   choice.innerText = `You chose: ${selectedValue}, the machine chose: ${randomValue}.`;
-  if (selectedValue === randomValue) {
-    result.innerText = 'You won!';
-  } else if (selectedValue !== randomValue) {
-    result.innerText = 'You lost!';
-  }
+  selectedValue === randomValue
+    ? (result.innerText = 'You won!')
+    : (result.innerText = 'You lost!');
 }
 
 form.addEventListener('submit', onFormSubmit);
