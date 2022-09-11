@@ -1,0 +1,236 @@
+/* Animation */
+@keyframes rolling {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-20%);
+  }
+  50% {
+    transform: translateY(-40%);
+  }
+  75% {
+    transform: translateY(-60%);
+  }
+  100% {
+    transform: translateY(-80%);
+  }
+}
+
+/* CSS Reset */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+dl,
+dd {
+  margin: initial;
+  padding: initial;
+}
+
+li {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3 {
+  font-size: 100%; /* 원래 사이즈로 가겠다 */
+  font-weight: normal;
+}
+
+a {
+  color: inherit; /* 부모의 색상 상속 */
+  text-decoration: none;
+}
+
+body {
+  background-color: #111;
+  color: #999;
+}
+
+.portrait {
+  background-image: url(/profile-site/img/portrait.jpg);
+  background-size: cover;
+  background-position: center;
+  padding-top: 56.25%; /*16:9비율*/
+}
+
+.profile {
+  padding: 5%;
+}
+
+.profile-header,
+.profile-section {
+  padding-bottom: 8%;
+}
+
+.profile-section h2 {
+  border-top: 3px solid orangered;
+  color: orangered;
+  margin-bottom: 30px;
+  padding-top: 0.5rem;
+  position: sticky;
+  top: 0;
+  background-color: #111;
+  box-shadow: 0 0 10px 10px #111;
+}
+
+.name {
+  font-size: 30px;
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 30px;
+  position: sticky;
+  top: -1.5em;
+  background-color: #111;
+  box-shadow: 0 0 30px 10px #111;
+}
+
+.name-job {
+  display: inline-block;
+  vertical-align: top;
+  height: 1.5em;
+  overflow: hidden;
+  padding-right: 0.5em;
+  color: white;
+  position: relative;
+}
+
+.name-job::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 10px 10px #111;
+  margin-left: -20px;
+}
+
+.name-job-list {
+  /* margin-top: -3em; */
+  animation-name: rolling;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+}
+
+.name-title {
+  font-size: 1.5em;
+  line-height: 1;
+  color: deeppink;
+}
+
+.icons {
+  margin: 30px 0;
+}
+
+.icons a {
+  background-image: url(/profile-site/img/icons.png);
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+}
+
+.icons a.twitter {
+  background-position: left top;
+}
+
+.timeline {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.timeline h3 {
+  color: orange;
+  font-size: 1.1rem;
+  border-top: 3px solid;
+  width: fit-content;
+  float: left;
+  margin-right: 0.7em;
+}
+
+.timeline li {
+  padding-bottom: 8%;
+}
+
+.timeline li:last-child {
+  padding-bottom: 0;
+}
+
+.graph li {
+  background-color: dodgerblue;
+  color: #111;
+  padding: 0.5em 1em; /* 폰트 크기가 커지면 그래프도 커지는게 합리적이므로 em 사용*/
+  margin: 0.4em 0;
+  border-radius: 50px;
+  box-sizing: border-box; /*data-score 속성을 통해 그래프 길이 제어 시 크기 조절 때문*/
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(107, 107, 224, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.graph li::before {
+  content: attr(data-score);
+  float: right;
+}
+
+.graph li[data-score='60%'] {
+  width: 60%;
+}
+.graph li[data-score='70%'] {
+  width: 70%;
+}
+.graph li[data-score='80%'] {
+  width: 80%;
+}
+.graph li[data-score='90%'] {
+  width: 90%;
+}
+
+.contact dt {
+  color: orange;
+  float: left;
+  width: 4em;
+}
+
+.contact dd {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .portrait {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 60vw;
+    height: 100vh;
+    padding: 0;
+  }
+  .profile {
+    margin-left: 60vw;
+  }
+  .name {
+    font-size: 3vw;
+  }
+  .timeline {
+    margin: 0 -10px;
+  }
+  .timeline li {
+    width: 50%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  .timeline li:nth-child(even) {
+    margin-left: auto;
+    margin-top: -100px;
+    margin-bottom: -100px;
+  }
+}
